@@ -10,7 +10,7 @@ Time::Time(int h, int m) {
     hours = h;
     minutes = m;
 }
-void Time::add_hr() {
+void Time::add_hr(int h) {
     hours += h;
 }
 void Time::add_minutes( int m) {

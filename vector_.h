@@ -4,9 +4,10 @@
 
 #ifndef CPPLUS_VECTOR__H
 #define CPPLUS_VECTOR__H
-
+#include <iostream>
 namespace VECTOR{
     class Vector{
+    public:
         enum Mode{RECT,POL};
     private:
         double x;
@@ -21,21 +22,24 @@ namespace VECTOR{
     public:
         Vector();
         Vector(double  n1,double n2, Mode form=RECT);
-        void reset(double  n2, double n2, Mode form=RECT);
+        void reset(double  n1, double n2, Mode form=RECT);
         ~Vector();
-        void Polar_mode();
-        void rect_mode();
+        double xval() const {return x;}       // report x value
+        double yval() const {return y;}       // report y value
+        double magval() const {return mag;}   // report magnitude
+        double angval() const {return ang;}   // report angle
+        void polar_mode();                    // set mode to POL
+        void rect_mode();                     // set mode to RECT
 
-        vector void operator+(const vector & b) const;
-        vector void operator-(const vector & b) const;
-        vector void operator-()const;
-        vector void operator*(double n)const;
+        Vector operator+(const Vector & b) const;
+        Vector operator-(const Vector & b) const;
+        Vector operator-()const;
+        Vector operator*(double n)const;
 
-        friend vector operator*(double n, const vector &a);
-        friend std::ostream & operator
-
-
+        friend Vector operator *(double n, const Vector &a);
+        friend std::ostream & operator<<(std::ostream & os, const Vector & v);
 
     };
+    void test_vector();
 }
 #endif //CPPLUS_VECTOR__H

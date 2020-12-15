@@ -12,7 +12,7 @@ public:
     Time();
     Time(int h, int m=0);
     void add_minutes(int m);
-    void add_hr();
+    void add_hr(int h);
     Time operator + (const Time &t) const;
     void show() const;
 };
