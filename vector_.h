@@ -42,4 +42,5 @@ namespace VECTOR{
     };
     void test_vector();
 }
+void test_vector();
 #endif //CPPLUS_VECTOR__H

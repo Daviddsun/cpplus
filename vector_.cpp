@@ -142,3 +142,60 @@ namespace VECTOR {
         vector_1.angval();
     }
 }
+using namespace std;
+using VECTOR::Vector;
+
+void test_vector(){
+    srand(time(0));     // seed random-number generator
+    double direction;
+    Vector step;
+    Vector result(0.0, 0.0);
+    unsigned long steps = 0;
+    double target;
+    double dstep;
+    cout << "Enter target distance (q to quit): ";
+    cin >> target;
+    cout << "Enter step length: ";
+    cin >> dstep;
+    int i = 1 ;
+    int total_steps = 0;
+
+    while (i < 100)
+    {
+        if(!dstep)
+            break;
+
+        while (result.magval() < target)
+        {
+            direction = rand() % 360;
+            step.reset(dstep, direction, VECTOR::Vector::POL);
+            result = result + step;
+//            cout << " result.angle_val():  " << result.angval() << endl;
+            steps++;
+        }
+        result.polar_mode();
+        total_steps += steps;
+        steps = 0;
+        result.reset(0.0, 0.0);
+        i++;
+    }
+    cout << " average step of : i = " << i << " is " << total_steps / i << endl;
+//    cout << "After " << steps << " steps, the subject "
+//                                 "has the following location:\n";
+//    cout << result << endl;
+//
+//    cout << " or\n" << result << endl;
+//    cout << "Average outward distance per step = "
+//         << result.magval()/steps << endl;
+//
+//    cout << "Enter target distance (q to quit): ";
+//
+    cout << "Bye!\n";
+/* keep window open
+    cin.clear();
+    while (cin.get() != '\n')
+        continue;
+    cin.get();
+*/
+
+}
