@@ -14,9 +14,17 @@ public:
     StringBad(const StringBad &);
     ~StringBad();              // destructor
     StringBad & operator=(const StringBad &);
-// friend function
+    StringBad & operator=(const char * s);
+
+    char & operator[](int i);
+    const char & operator[](int i) const;
+    static int HowMany();
+    // friend function
+    friend bool operator==(const StringBad &, const StringBad &);
     friend std::ostream & operator<<(std::ostream & os, 
                        const StringBad & st);
+    friend bool operator<(const StringBad &st, const StringBad &st2);
+    friend bool operator>(const StringBad &st1, const StringBad &st2);
 };
 
 void callme1(StringBad &);  // pass by reference

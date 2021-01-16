@@ -38,11 +38,6 @@ StringBad::~StringBad()               // necessary destructor
     delete [] str;                    // required
 }
 
-std::ostream & operator<<(std::ostream & os, const StringBad & st)
-{
-    os << st.str;
-    return os; 
-}
 StringBad::StringBad(const StringBad &st){
     num_strings += 1;
     len = st.len;
@@ -50,6 +45,10 @@ StringBad::StringBad(const StringBad &st){
     std::strcpy(str, st.str);
     std::cout << num_strings << " :  str  \"" << str << " \"  created" <<std::endl;
 }
+int StringBad::HowMany() {
+    return num_strings;
+}
+
 StringBad & StringBad::operator=(const StringBad &st) {
     if (this == &st)
         return *this;
@@ -59,6 +58,44 @@ StringBad & StringBad::operator=(const StringBad &st) {
     std::strcpy(str, st.str);
     return *this;
 }
+StringBad & StringBad::operator=(const char * s)
+{
+    delete [] str;
+    len = std::strlen(s);
+    str = new char[len + 1];
+    std::strcpy(str, s);
+    return *this;
+}
+char & StringBad::operator[](int i)
+{
+    return str[i];
+}
+const char & StringBad::operator[](int i) const
+{
+    return str[i];
+}
+
+// overloaded operator friends
+bool operator==(const StringBad &str1, const StringBad &str2){
+    return (std::strcmp(str1.str, str2.str) == 0);
+}
+
+bool operator<(const StringBad &st1, const StringBad &st2)
+{
+    return (std::strcmp(st1.str, st2.str) < 0);
+}
+
+bool operator>(const StringBad &st1, const StringBad &st2)
+{
+    return st2 < st1;
+}
+std::ostream & operator<<(std::ostream & os, const StringBad & st)
+{
+    os << st.str;
+    return os;
+}
+
+
 void test_sb()
 {
     using std::endl;
@@ -82,6 +119,8 @@ void test_sb()
         knot = headline1; // 赋值构造函数；
         cout << "knot: " << knot << endl;
         cout << "Exiting the block.\n";
+    StringBad string_1("sdf");
+    cout << string_1[2]<<endl;
     }
     cout << "End of main()\n";
     // std::cin.get();
